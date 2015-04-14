@@ -1,6 +1,8 @@
 package com.group7.hms.Users;
 
-import java.util.Date;;
+import java.util.Date;
+
+;
 
 /**
  * public class Patient extends User - will hold the Patient specific
@@ -17,6 +19,9 @@ public class Patient extends User {
 	 */
 	private Insurance patientInsurance;
 
+	public Patient(){
+		super();
+	}
 	/**
 	 * public constructor - the minimal constructor
 	 * 
@@ -47,11 +52,22 @@ public class Patient extends User {
 	 *            - the insurance policy ID
 	 */
 	public Patient(String applicantEmail, String applicantPassword,
-			String provider, Date startDate, Date endDate,
-			String insuranceID) {
+			String provider, Date startDate, Date endDate, String insuranceID) {
 		super(applicantEmail, applicantPassword);
 		patientInsurance = new Insurance(provider, startDate, endDate,
 				insuranceID);
+	}
+
+	/**
+	 * public method hasInsurance - true if the user has entered insurance and
+	 * false if the user has not entered insurance
+	 * 
+	 * @return true if the user has entered insurance
+	 */
+	public boolean hasInsurance() {
+
+		return this.getInsuranceID().contentEquals("");
+
 	}
 
 	/**
@@ -61,7 +77,9 @@ public class Patient extends User {
 	 * @return Patient Insurance Provider
 	 */
 	public String getInsuranceProvider() {
+		
 		return patientInsurance.getProvider();
+		
 	}
 
 	/**
@@ -128,7 +146,9 @@ public class Patient extends User {
 	}
 
 	/**
-	 * public method getInsuranceID - will return the insurance id for the patient ploicy
+	 * public method getInsuranceID - will return the insurance id for the
+	 * patient ploicy
+	 * 
 	 * @return insuranceID for patient policy
 	 */
 	public String getInsuranceID() {
@@ -145,10 +165,10 @@ public class Patient extends User {
 	 */
 	private class Insurance {
 
-		private String provider;
-		private Date startDate;
-		private Date endDate;
-		private String insuranceID;
+		private String provider="";
+		private Date startDate=new Date();
+		private Date endDate=new Date();
+		private String insuranceID ="";
 
 		/**
 		 * public constructor - minimal constructor
@@ -169,8 +189,8 @@ public class Patient extends User {
 		 * @param insuranceID
 		 *            - insurance ID of the Insured.
 		 */
-		public Insurance(String provider, Date startDate,
-				Date endDate, String insuranceID) {
+		public Insurance(String provider, Date startDate, Date endDate,
+				String insuranceID) {
 			setProvider(provider);
 			setStartDate(startDate);
 			setEndDate(endDate);
